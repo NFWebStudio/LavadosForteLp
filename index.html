@@ -4,28 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lavados Forte</title>
-    <!-- SEO BÁSICO -->
     <meta name="description" content="Lavado y detailing profesional a domicilio en La Plata. Servicio premium, resultados reales y atención personalizada.">
     <meta name="keywords" content="lavado de autos la plata, lavado a domicilio, detailing auto, lavadero la plata">
 
-    <!-- SEO Open Graph -->
     <meta property="og:title" content="Lavados Forte | Lavado y Detailing Premium a Domicilio">
     <meta property="og:description" content="Lavado profesional a domicilio en La Plata. Tu auto como nuevo, sin moverte.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nfwebstudio.github.io/LavadosForte/">
     <meta property="og:image" content="https://nfwebstudio.github.io/LavadosForte/preview.jpg">
 
-    <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Lavados Forte | Lavado Premium">
     <meta name="twitter:description" content="Tu lavadero de confianza en La Plata. Brillo real, servicio profesional.">
     <meta name="twitter:image" content="https://nfwebstudio.github.io/LavadosForte/preview.jpg">
 
-    <!-- SEO PRO -->
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://nfwebstudio.github.io/LavadosForte/">
 
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17985494738"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
@@ -52,14 +47,23 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background-color: var(--negro); color: var(--blanco); overflow-x: hidden; }
 
-        /* --- HEADER --- */
+        /* --- HEADER MEJORADO (Micro-interacción) --- */
         header {
             position: fixed; width: 100%; top: 0; z-index: 1000;
-            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px);
-            padding: 10px 5%; display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid rgba(30, 195, 243, 0.2);
+            background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(0px);
+            padding: 20px 5%; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid transparent;
+            transition: all 0.4s ease;
         }
-        .logo img { height: 70px; }
+        header.scrolled {
+            padding: 10px 5%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(30, 195, 243, 0.3);
+        }
+        .logo img { height: 70px; transition: 0.3s; }
+        header.scrolled .logo img { height: 55px; }
+
         nav ul { display: flex; list-style: none; gap: 25px; }
         nav a { color: var(--blanco); text-decoration: none; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; transition: 0.3s; cursor: pointer; }
         nav a:hover { color: var(--celeste); }
@@ -112,7 +116,7 @@
         .steps { padding: 100px 5%; background: var(--gris-oscuro); text-align: center; }
         .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
         .step-card { background: #181818; padding: 40px; border-radius: 25px; border: 1px solid #333; position: relative; transition: 0.3s; }
-        .step-card:hover { border-color: var(--celeste); }
+        .step-card:hover { border-color: var(--celeste); transform: translateY(-5px); }
         .step-card span { font-size: 4rem; color: var(--celeste); opacity: 0.1; position: absolute; top: 10px; right: 20px; font-weight: 900; }
         .step-card i { font-size: 3rem; color: var(--celeste); margin-bottom: 25px; display: block; }
 
@@ -122,12 +126,44 @@
         .price-card { 
             background: linear-gradient(145deg, #111, #000); padding: 50px 30px; border-radius: 35px; 
             text-align: center; border: 1px solid var(--azul); transition: 0.4s; position: relative;
+            overflow: hidden;
         }
         .price-card:hover { border-color: var(--celeste); transform: translateY(-10px); }
+        /* Brillo al pasar el mouse */
+        .price-card::after {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(30, 195, 243, 0.1), transparent);
+            transform: rotate(45deg); transition: 0.6s; pointer-events: none;
+        }
+        .price-card:hover::after { left: 100%; top: 100%; }
+
         .price-card h3 { font-size: 2.2rem; margin-bottom: 15px; font-style: italic; color: var(--blanco); }
         .price-card .cost { font-size: 3.5rem; font-weight: 900; color: var(--celeste); margin-bottom: 25px; }
         .price-card ul { list-style: none; margin-bottom: 35px; color: #bbb; line-height: 2.2; text-align: left; }
         .price-card ul li i { color: var(--celeste); margin-right: 10px; }
+
+        /* --- SECCIÓN RESEÑAS --- */
+        .reviews-section { padding: 100px 5%; background: var(--negro); text-align: center; }
+        .reviews-container { max-width: 1000px; margin: 0 auto; }
+        .review-form { background: #111; padding: 30px; border-radius: 20px; border: 1px solid #333; margin-bottom: 50px; text-align: left; }
+        .review-form input, .review-form textarea {
+            width: 100%; padding: 15px; margin-bottom: 15px; background: #1a1a1a; border: 1px solid #444;
+            color: white; border-radius: 10px; font-family: inherit;
+        }
+        .review-form input:focus { border-color: var(--celeste); outline: none; }
+        .star-rating { color: #ffd700; font-size: 1.5rem; margin-bottom: 15px; cursor: pointer; }
+        
+        .reviews-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; text-align: left; }
+        .review-item { background: #181818; padding: 25px; border-radius: 15px; border-left: 4px solid var(--celeste); animation: fadeIn 0.5s ease; }
+        
+        /* Estilos Avatar Reseñas */
+        .review-header { display: flex; align-items: center; gap: 15px; margin-bottom: 12px; }
+        .review-avatar { width: 45px; height: 45px; border-radius: 50%; border: 2px solid var(--celeste); background: #222; }
+        .review-info h4 { color: var(--celeste); margin-bottom: 2px; text-transform: capitalize; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .review-item .stars { color: #ffd700; font-size: 0.9rem; margin-bottom: 10px; }
+        .review-item p { font-size: 0.9rem; color: #ccc; font-style: italic; }
 
         /* --- FAQ / CONSULTAS --- */
         .faq { padding: 100px 5%; max-width: 900px; margin: 0 auto; }
@@ -233,20 +269,20 @@
         }
 
         .whatsapp-float:hover {
-    transform: scale(1.1);
-    background: #0A5C9F;
-}
+            transform: scale(1.1);
+            background: #0A5C9F;
+        }
     
 
-    @media (max-width: 480px) {
-    .whatsapp-float {
-        bottom: 15px;
-        right: 15px;
-        width: 58px;
-        height: 58px;
-        font-size: 2rem;
-    }
-}
+        @media (max-width: 480px) {
+            .whatsapp-float {
+                bottom: 15px;
+                right: 15px;
+                width: 58px;
+                height: 58px;
+                font-size: 2rem;
+            }
+        }
         .map-container {
             max-width: 1000px;
             margin: 40px auto 0 auto;
@@ -265,7 +301,7 @@
 </head>
 <body>
 
-    <header>
+    <header id="main-header">
         <div class="logo">
             <img src="logo2.png" alt="Lavados Forte">
         </div>
@@ -273,7 +309,6 @@
             <ul>
                 <li><a href="#servicios">Servicios y Precios</a></li>
                 <li><a onclick="toggleProductos(); closeMenu();">Productos</a></li>
-                <li><a href="#proceso">Proceso</a></li>
                 <li><a href="#galeria">Galería</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
@@ -301,9 +336,9 @@
 
     <section class="hero">
         <div class="hero-content">
-            <p>EL BRILLO QUE ESTAS BUSCANDO</p>
+            <p>𝐓𝐔 𝐀𝐔𝐓𝐎 𝐂𝐎𝐌𝐎 𝐍𝐔𝐄𝐕𝐎 𝐒𝐈𝐍 𝐌𝐎𝐕𝐄𝐑𝐓𝐄 𝐃𝐄 𝐓𝐔 𝐂𝐀𝐒𝐀</p>
             <h1>LAVADOS <span>FORTE</span></h1>
-            <p>𝙻𝙰𝚅𝙰𝙳𝙾𝚂 𝙰 𝙳𝙾𝙼𝙸𝙲𝙸𝙻𝙸𝙾</p>
+            <p>𝙻𝚊𝚟𝚊𝚍𝚘 𝚊 𝚍𝚘𝚖𝚒𝚌𝚒𝚕𝚒𝚘 𝚎𝚗 𝙻𝚊 𝙿𝚕𝚊𝚝𝚊</p>
             <a href="https://wa.me/5492214287674?text=Hola!%20Quiero%20sacar%20un%20turno%20para%20lavar%20mi%20auto" class="btn-cta">SACAR TURNO POR WHATSAPP</a>
         </div>
     </section>
@@ -313,17 +348,17 @@
         <div class="steps-grid">
             <div class="step-card">
                 <span>01</span><i class="fas fa-calendar-check"></i>
-                <h3>𝐏𝐄𝐃𝐈 𝐓𝐔𝐑𝐍𝐎</h3>
-                <p>Escribinos por WhatsApp para coordinar el día y el servicio ideal para tu vehículo.</p>
+                <h3>𝑷𝑬𝑫𝑰 𝑻𝑼𝑹𝑵𝑶</h3>
+                <p>Escribinos por WhatsApp para coordinar el día y el servicio ideal para tu auto.</p>
             </div>
             <div class="step-card">
                 <span>02</span><i class="fas fa-home"></i>
-                <h3>𝐀 𝐃𝐎𝐌Ｉ𝐂ＩＬＩ𝐎</h3>
+                <h3>𝑨 𝑫𝑶𝑴𝑰𝑪𝑰𝑳𝑰𝑶</h3>
                 <p>Nos trasladamos a tu ubicación con todo el equipamiento necesario.</p>
             </div>
             <div class="step-card">
                 <span>03</span><i class="fa-solid fa-car"></i>
-                <h3>𝗟𝗔𝗩𝗔𝗗𝗢 𝗘𝗟𝗜𝗧𝗘</h3>
+                <h3>𝑳𝑨𝑽𝑨𝑫𝑶 𝑬𝑳𝑰𝑻𝑬</h3>
                 <p>Aplicamos técnicas de detallado y productos premium para un acabado perfecto.</p>
             </div>
         </div>
@@ -344,7 +379,7 @@
                 <a href="https://wa.me/5492214287674?text=Quiero%20el%20plan%20Economico" class="btn-cta">PEDIR ESTE</a>
             </div>
             <div class="price-card" style="border: 2px solid var(--celeste); transform: scale(1.05); box-shadow: 0 0 30px rgba(30,195,243,0.2);">
-                <div style="position:absolute; top:0; left:0; width:100%; background:var(--celeste); color:black; font-weight:900; padding:5px; border-radius:33px 33px 0 0; font-size:0.7rem;">MÁS SOLICITADO</div>
+                <div style="position:absolute; top:0; left:0; width:100%; background:var(--celeste); color:black; font-weight:900; padding:5px; border-radius:33px 33px 0 0; font-size:0.7rem;">𝙈𝘼𝙎 𝙎𝙊𝙇𝙄𝘾𝙄𝙏𝘼𝘿𝙊</div>
                 <h3>𝑷𝒓𝒆𝒎𝒊𝒖𝒎</h3>
                 <div class="cost">$20.000</div>
                 <ul>
@@ -367,6 +402,27 @@
                 </ul>
                 <a href="https://wa.me/5492214287674?text=Quiero%20el%20plan%20Deluxe" class="btn-cta">PEDIR ESTE</a>
             </div>
+        </div>
+    </section>
+
+    <section id="reseñas" class="reviews-section">
+        <h2 class="section-title">OPINIONES DE CLIENTES</h2>
+        <div class="reviews-container">
+            <div class="review-form">
+                <h3>DEJANOS TU RESEÑA</h3>
+                <div class="star-rating" id="star-input">
+                    <i class="fas fa-star" data-val="1"></i>
+                    <i class="fas fa-star" data-val="2"></i>
+                    <i class="fas fa-star" data-val="3"></i>
+                    <i class="fas fa-star" data-val="4"></i>
+                    <i class="fas fa-star" data-val="5"></i>
+                </div>
+                <input type="text" id="rev-name" placeholder="Tu nombre">
+                <textarea id="rev-text" rows="3" placeholder="Contanos tu experiencia..."></textarea>
+                <button onclick="saveReview()" class="btn-cta" style="padding: 10px 25px; font-size: 0.8rem;">PUBLICAR</button>
+            </div>
+            <div class="reviews-list" id="reviews-list">
+                </div>
         </div>
     </section>
 
@@ -494,7 +550,7 @@
             <a href="https://x.com/LavadosForte"><i class="fab fa-twitter fa-2x"></i></a>
         </div>
         <p style="opacity: 0.5; font-size: 0.8rem; margin-bottom: 10px; color: var(--celeste);">ᴜʟᴛɪᴍᴀ ᴀᴄᴛᴜᴀʟɪᴢᴀᴄɪᴏɴ: 1 ᴍᴀʀᴢᴏ 2026</p>
-        <p style="opacity: 0.3; font-size: 0.8rem;">&copy; 2026 LAVADOS FORTE</p>
+        <p style="opacity: 0.3; font-size: 0.8rem;">© 2026 LAVADOS FORTE</p>
     
     <div class="map-container">
       <iframe 
@@ -513,10 +569,21 @@
 </a>
 
     <script>
+        // Efecto Header Scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // ScrollReveal
         ScrollReveal().reveal('.hero-content', { delay: 200, origin: 'top', distance: '50px' });
         ScrollReveal().reveal('.step-card', { delay: 300, interval: 150, origin: 'bottom', distance: '30px' });
         ScrollReveal().reveal('.price-card', { delay: 300, interval: 150, origin: 'bottom', distance: '50px' });
-        ScrollReveal().reveal('.budget-container', { delay: 300, origin: 'bottom', distance: '30px' });
+        ScrollReveal().reveal('.review-item', { delay: 200, interval: 100 });
 
         const mobileMenu = document.getElementById('mobile-menu');
         const navMenu = document.getElementById('nav-menu');
@@ -543,7 +610,6 @@
             modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
         }
 
-
         document.querySelectorAll('.faq-question').forEach(item => {
             item.addEventListener('click', () => {
                 const parent = item.parentElement;
@@ -551,6 +617,7 @@
             });
         });
 
+        // Slider Comparación
         const slider = document.getElementById('mainSlider');
         const afterImgDiv = document.getElementById('afterImage');
         const afterImgInside = document.getElementById('afterImgInside');
@@ -572,6 +639,66 @@
         window.addEventListener('resize', updateSliderWidth);
         window.addEventListener('load', updateSliderWidth);
 
+        // Lógica de Reseñas
+        let currentRating = 5;
+        const stars = document.querySelectorAll('#star-input i');
+        
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                currentRating = star.getAttribute('data-val');
+                stars.forEach(s => {
+                    s.style.color = s.getAttribute('data-val') <= currentRating ? '#ffd700' : '#444';
+                });
+            });
+        });
+
+        function saveReview() {
+            const name = document.getElementById('rev-name').value;
+            const text = document.getElementById('rev-text').value;
+            if(!name || !text) return alert("Por favor completa los campos.");
+
+            const review = { name, text, stars: currentRating, date: new Date().toLocaleDateString() };
+            let reviews = JSON.parse(localStorage.getItem('forte_reviews') || '[]');
+            reviews.unshift(review);
+            localStorage.setItem('forte_reviews', JSON.stringify(reviews));
+
+            document.getElementById('rev-name').value = '';
+            document.getElementById('rev-text').value = '';
+            renderReviews();
+        }
+
+        function renderReviews() {
+            const list = document.getElementById('reviews-list');
+            const stored = JSON.parse(localStorage.getItem('forte_reviews') || '[]');
+            
+            // Reseñas fijas por defecto si está vacío
+            const defaults = [
+                {name: "Juan Perez", text: "Excelente servicio, el auto quedó como nuevo. Muy recomendable!", stars: 5, date: "10/02/2026"},
+                {name: "Matias", text: "Puntualidad y prolijidad. Los productos que usan son de primera.", stars: 5, date: "15/02/2026"}
+            ];
+
+            const allReviews = stored.length > 0 ? stored : defaults;
+
+            list.innerHTML = allReviews.map(r => {
+                // Generar URL del avatar basada en el nombre
+                const avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(r.name)}&background=1EC3F3&color=fff&bold=true`;
+                
+                return `
+                <div class="review-item">
+                    <div class="review-header">
+                        <img src="${avatarUrl}" alt="${r.name}" class="review-avatar">
+                        <div class="review-info">
+                            <h4>${r.name}</h4>
+                            <div class="stars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div>
+                        </div>
+                    </div>
+                    <p>"${r.text}"</p>
+                    <small style="opacity:0.4; font-size:0.7rem; display: block; margin-top: 10px;">${r.date}</small>
+                </div>
+            `}).join('');
+        }
+
+        // Galería / Lightbox
         let album = [];
         let idx = 0;
 
@@ -596,7 +723,7 @@
                     <img src="${album[idx]}" class="lb-img">
                     <p style="margin-top:15px; font-weight:900; color:var(--celeste)">${idx + 1} / ${album.length}</p>
                 </div>
-                <button onclick="this.parentElement.remove()" style="position:absolute; top:20px; right:20px; background:none; border:none; color:white; font-size:2.5rem; cursor:pointer;">&times;</button>
+                <button onclick="this.parentElement.remove()" style="position:absolute; top:20px; right:20px; background:none; border:none; color:white; font-size:2.5rem; cursor:pointer;">×</button>
             `;
             lb.onclick = () => lb.remove();
             document.body.appendChild(lb);
@@ -609,14 +736,17 @@
             showLightbox();
         };
 
+        // Init
+        window.onload = () => {
+            renderReviews();
+            updateSliderWidth();
+        };
+
         document.addEventListener('keydown', (e) => {
             if (document.getElementById('forte-lightbox')) {
                 if (e.key === "ArrowLeft") move(-1);
                 if (e.key === "ArrowRight") move(1);
                 if (e.key === "Escape") document.getElementById('forte-lightbox').remove();
-            }
-            if (e.key === "Escape" && document.getElementById('modal-productos').style.display === 'flex') {
-                toggleProductos();
             }
         });
     </script>
